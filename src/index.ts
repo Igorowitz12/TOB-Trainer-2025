@@ -34,18 +34,13 @@ document.getElementById("settings").addEventListener("click", () => {
     ControlPanelController.controller.setActiveControl('SETTINGS');
 });
 
-const tileMarkerColor = document.getElementById("tileMarkerColor") as HTMLInputElement;
-tileMarkerColor.addEventListener("input", () => {
-    Settings.tileMarkerColor = tileMarkerColor.value;
-    TileMarker.onSetColor(Settings.tileMarkerColor);
-    Settings.persistToStorage();
-}, false);
-tileMarkerColor.value = Settings.tileMarkerColor;
 
 const { player } = selectedRegion.initialiseRegion();
 
 Viewport.setupViewport(selectedRegion);
 Viewport.viewport.setPlayer(player);
+ControlPanelController.controller.setActiveControl('INVENTORY');
+
 
 ImageLoader.onAllImagesLoaded(() => {
   MapController.controller.updateOrbsMask(player.currentStats, player.stats);
