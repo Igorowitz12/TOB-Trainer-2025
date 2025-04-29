@@ -124,10 +124,34 @@ let started = false;
 function checkStart() {
   if (!started && imagesReady && assetsPreloaded) {
     started = true;
+
     // Start the engine
     world.startTicking();
+
+    // 🔵 Start drawing minimap dot every 100ms
+    setInterval(() => {
+      console.log("drawing dot"); // ✅ stays in for debug
+      drawPlayerMinimapDot();
+    }, 100);
   }
 }
+
+function drawPlayerMinimapDot() {
+  const canvas = document.getElementById("minimapDots") as HTMLCanvasElement;
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw a blue dot dead center
+  ctx.beginPath();
+  ctx.arc((canvas.width / 2) -3, (canvas.height / 2) - 1, 4, 0, 2 * Math.PI); 
+    ctx.fillStyle = "blue";
+  ctx.fill();
+}
+
 
 /// /////////////////////////////////////////////////////////
 
