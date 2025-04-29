@@ -145,10 +145,29 @@ function drawPlayerMinimapDot() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw a blue dot dead center
+  const player = Trainer.player;
+  if (!player) return;
+
+  // 🧠 Set base position for center of minimap
+  const minimapCenterX = canvas.width / 2;
+  const minimapCenterY = canvas.height / 2;
+
+  // 🧠 Calculate player's offset relative to center
+  // This version assumes that Verzik is standing at (25, 26) and center of room
+  const baseX = 25;
+  const baseY = 26;
+
+  const scale = 2.5; // 🔥 Adjust how much each tile movement shifts the dot visually
+
+  const offsetX = (player.location.x - baseX) * scale;
+  const offsetY = (player.location.y - baseY) * scale;
+
+  const playerDotX = minimapCenterX + offsetX;
+  const playerDotY = minimapCenterY + offsetY;
+
   ctx.beginPath();
-  ctx.arc((canvas.width / 2) -3, (canvas.height / 2) - 1, 4, 0, 2 * Math.PI); 
-    ctx.fillStyle = "blue";
+  ctx.arc(playerDotX, playerDotY, 4, 0, 2 * Math.PI);
+  ctx.fillStyle = "blue";
   ctx.fill();
 }
 
