@@ -6,8 +6,8 @@ A structured, prioritized plan for evolving the `verzik` simulator into a fully 
 
 ## ✅ Phase 1: Branding Overhaul
 
-- [ ] Remove Supalosa/InfernoTrainer references from all public-facing text and UI
-- [ ] Remove or replace the Discord button in the sidebar
+- [X] Remove Supalosa/InfernoTrainer references from all public-facing text and UI
+- [X] Remove or replace the Discord button in the sidebar
 - [ ] Replace document title and favicon with TOB Trainer 2025 branding
 - [ ] Add personal splash/start screen before the simulator loads, options for settings, credits start (themed like OSRS login screen)
 - [ ] Theme restyle: update sidebar, fonts, button styles to match ToB aesthetic
