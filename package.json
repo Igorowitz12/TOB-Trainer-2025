@@ -1,7 +1,7 @@
 {
-  "name": "@supalosa/verzik-trainer",
-  "version": "0.0.1",
-  "description": "",
+  "name": "Xgor 2025 TOB Simulator",
+  "version": "1.0.0",
+  "description": "Let's Practice Those P3",
   "main": "index.js",
   "scripts": {
     "start": "npx webpack serve",
