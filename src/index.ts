@@ -89,7 +89,7 @@ function drawAssetLoadingBar(loadingProgress: number) {
   context.font = "32px OSRS";
   context.textAlign = "center";
   context.fillText(`Loading models: ${Math.floor(loadingProgress * 100)}%`, canvas.width / 2, canvas.height / 2);
-  const scale = 2;
+  const scale = 3;
   const left = canvasWidth / 2 - (specialAttackBarBackground.width * scale) / 2;
   const top = canvasHeight / 2 + 20;
   const width = specialAttackBarBackground.width * scale;
@@ -148,25 +148,27 @@ function drawPlayerMinimapDot() {
   const player = Trainer.player;
   if (!player) return;
 
-  // 🧠 Set base position for center of minimap
-  const minimapCenterX = canvas.width / 2;
-  const minimapCenterY = canvas.height / 2;
+  const minimapCenterX = 124 / 2;
+  const minimapCenterY = 124/ 2;
 
-  // 🧠 Calculate player's offset relative to center
-  // This version assumes that Verzik is standing at (25, 26) and center of room
-  const baseX = 25;
+  const baseX = 25; // center of room
   const baseY = 26;
 
-  const scale = 2.5; // 🔥 Adjust how much each tile movement shifts the dot visually
+  const scale = 2.5; // tile to pixel scale
 
   const offsetX = (player.location.x - baseX) * scale;
   const offsetY = (player.location.y - baseY) * scale;
 
-  const playerDotX = minimapCenterX + offsetX;
-  const playerDotY = minimapCenterY + offsetY;
+  let dotX = minimapCenterX + offsetX;
+  let dotY = minimapCenterY + offsetY;
+
+  // ✅ Clamp dot to canvas bounds
+  const margin = 6; // dot radius
+  dotX = Math.max(margin, Math.min(canvas.width - margin, dotX));
+  dotY = Math.max(margin, Math.min(canvas.height - margin, dotY));
 
   ctx.beginPath();
-  ctx.arc(playerDotX, playerDotY, 4, 0, 2 * Math.PI);
+  ctx.arc(dotX, dotY, 4, 0, 2 * Math.PI);
   ctx.fillStyle = "blue";
   ctx.fill();
 }
