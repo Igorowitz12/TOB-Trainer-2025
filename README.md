@@ -1,37 +1,41 @@
-# Inferno Trainer
+# TOB Trainer 2025 (Verzik Simulator)
 
-- [Click here to try the Inferno Trainer](https://www.infernotrainer.com/)
-- [Click here to beta test the Inferno Trainer](https://beta.infernotrainer.com/)
-- [Join our Discord](https://discord.gg/Z3ZyY7Yzt5)
+A tick-accurate, browser-based Verzik Phase 2 simulator for Theatre of Blood practice and mechanical training.
 
-## What is this project?
+This project is a **continuation and extension** of the open-source work by [@supalosa](https://github.com/Supalosa) and [@tesla](https://github.com/tesla), based on their `InfernoTrainer` project.  
+**TOB Trainer 2025**, maintained by [@Igorowitz12](https://github.com/Igorowitz12) (Xgor), aims to modernize the simulator with new features, custom UI, and high-level PvM training tools.
 
-This project stemmed from my interest in Old School Runescape's Inferno, and my desire for an open source, relatively clean re-implementation of the Old School Runescape engine. The underlying code is designed closer to a true game engine compared to any other trainer or simulator. The goal is for there to be a clean, well-defined API between all "Game Content" code and any underlying "Engine" code
+---
 
-## How do I use it?
+## 🔗 Useful Links
 
-### Pick your own waves
+- [Original Inferno Trainer](https://www.infernotrainer.com/)
+- [Original verzik branch codebase](https://github.com/Supalosa/InfernoTrainer/tree/verzik)
+- [Maintainer GitHub](https://github.com/Igorowitz12)
 
-If you want to practice a wave, click one of the links above. You can type in a wave and it will produce a random spawn, and you can re-play the exact spawn if you wish.
+---
 
-### Practice a wave I failed in-game
+## 🧠 What Is This Project?
 
-Alternatively, if you are practicing the Inferno and have the Inferno Stats plugin (Available on RuneLite's Plugin Hub), you can click a wave in the panel and it will load the simulation with the exact spawn. I would recommend you disable the "Hide when outside of the Inferno" feature for when you plank.
+Originally created to simulate the Inferno, the `verzik` branch focuses on accurately reproducing **Verzik Vitur Phase 2** logic.  
+This fork picks up from there and builds out a fully modular, clientless PvM simulator — perfect for learning, practicing, and breaking down Theatre of Blood movement and mechanics with precision.
 
-## I found a bug!
+The long-term goal is a feature-rich Verzik trainer with extensible modules for walking, attack prediction, UI interaction, and combat simulation.
 
-Likely. Please open a issue above. Videos, screenshots, proof of OSRS science, etc is appreciated. I want this to be a faithful re-implementation of OSRS and all bugs are appreciated.
+---
 
-## Can I contribute?
+## 🚀 Getting Started
 
-Sure. Right now the code is undergoing rapid development and the API is not stable. I am open to pull requests but I suggest you start small and let me talk to you first to make sure we're aligned.
+### 🛠 Requirements
+- Node.js **v16.x** (recommended)
+- npm
 
-## Development notes
+### 📦 Install and Run
 
-Use Node 16 for now. There's an SSL error on version >= 18.
+```bash
+npm install
+npx webpack serve
 
-    npm run start
 
-Running test
+OSRS assets and mechanics are © Jagex Ltd. Used under fair use for educational and non-commercial PvM training purposes.
 
-    npx jest
