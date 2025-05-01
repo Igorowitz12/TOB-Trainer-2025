@@ -42,21 +42,24 @@ export class VerzikRegion extends Region {
       y: parseInt(BrowserUtils.getQueryVar("y")) || 26,
     });
     
-    // Boundaries based on 495x353px map and 4px tile size
-    const maxX = 123;
-    const maxY = 88;
+    const tileSize = 4;
+    const maxX = Math.floor(495 / tileSize); // 123
+    const maxY = Math.floor(353 / tileSize); // 88
     
-    // Intercept any movement attempt
     const originalMoveTo = player.moveTo.bind(player);
     
-    player.moveTo = (x: number, y: number) => {
-      if (x >= 0 && x < maxX && y >= 0 && y < maxY) {
-        return originalMoveTo(x, y);
-      } else {
-        console.log(`Blocked movement to out-of-bounds tile: (${x}, ${y})`);
-        return false;
+    player.moveTo = (targetX: number, targetY: number) => {
+      let clampedX = Math.max(0, Math.min(targetX, maxX - 1));
+      let clampedY = Math.max(0, Math.min(targetY, maxY - 1));
+    
+      // OPTIONAL: show a debug log when clamping occurs
+      if (clampedX !== targetX || clampedY !== targetY) {
+        console.log(`Clamped movement from (${targetX}, ${targetY}) to (${clampedX}, ${clampedY})`);
       }
+    
+      return originalMoveTo(clampedX, clampedY);
     };
+    
     
     this.addPlayer(player);
 
