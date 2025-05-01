@@ -41,7 +41,23 @@ export class VerzikRegion extends Region {
       x: parseInt(BrowserUtils.getQueryVar("x")) || 25,
       y: parseInt(BrowserUtils.getQueryVar("y")) || 26,
     });
-
+    
+    // Boundaries based on 495x353px map and 4px tile size
+    const maxX = 123;
+    const maxY = 88;
+    
+    // Intercept any movement attempt
+    const originalMoveTo = player.moveTo.bind(player);
+    
+    player.moveTo = (x: number, y: number) => {
+      if (x >= 0 && x < maxX && y >= 0 && y < maxY) {
+        return originalMoveTo(x, y);
+      } else {
+        console.log(`Blocked movement to out-of-bounds tile: (${x}, ${y})`);
+        return false;
+      }
+    };
+    
     this.addPlayer(player);
 
     this.addMob(new VerzikVitur(this, { x: 22, y: 25 }, { aggro: player }));
