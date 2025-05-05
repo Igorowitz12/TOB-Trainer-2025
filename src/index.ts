@@ -69,7 +69,13 @@ const interval = setInterval(() => {
 }, 50);
 
 Assets.onAllAssetsLoaded(() => {
-  // renders a single frame
+  const originalDraw = MapController.controller.draw.bind(MapController.controller);
+
+  MapController.controller.draw = (ctx: CanvasRenderingContext2D) => {
+    console.log("✅ Custom minimap draw() is running.");
+    originalDraw(ctx);
+  };
+
   Viewport.viewport.initialise().then(() => {
     console.log("assets are preloaded");
     assetsPreloaded = true;
