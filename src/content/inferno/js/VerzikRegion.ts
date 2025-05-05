@@ -42,23 +42,27 @@ export class VerzikRegion extends Region {
       y: parseInt(BrowserUtils.getQueryVar("y")) || 26,
     });
     
-    const tileSize = 4;
-    const maxX = Math.floor(495 / tileSize); // 123
-    const maxY = Math.floor(353 / tileSize); // 88
+    // Arena tile bounds (adjust if needed)
+    const minX = 0;
+    const maxX = 50;
+    const minY = 0;
+    const maxY = 56;
     
     const originalMoveTo = player.moveTo.bind(player);
     
     player.moveTo = (targetX: number, targetY: number) => {
-      let clampedX = Math.max(0, Math.min(targetX, maxX - 1));
-      let clampedY = Math.max(0, Math.min(targetY, maxY - 1));
+      const clampedX = Math.max(minX, Math.min(targetX, maxX));
+      const clampedY = Math.max(minY, Math.min(targetY, maxY));
     
-      // OPTIONAL: show a debug log when clamping occurs
       if (clampedX !== targetX || clampedY !== targetY) {
         console.log(`Clamped movement from (${targetX}, ${targetY}) to (${clampedX}, ${clampedY})`);
       }
     
       return originalMoveTo(clampedX, clampedY);
     };
+    
+
+
     
     
     this.addPlayer(player);
