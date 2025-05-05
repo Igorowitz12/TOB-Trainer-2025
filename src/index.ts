@@ -162,8 +162,12 @@ function drawPlayerMinimapDot() {
 
   const scale = 2.5; // tile to pixel scale
 
-  const offsetX = (player.location.x - baseX) * scale;
-  const offsetY = (player.location.y - baseY) * scale;
+  const clampedX = Math.max(0, Math.min(player.location.x, 50));
+const clampedY = Math.max(0, Math.min(player.location.y, 56));
+
+const offsetX = (clampedX - baseX) * scale;
+const offsetY = (clampedY - baseY) * scale;
+
 
   let dotX = minimapCenterX + offsetX;
   let dotY = minimapCenterY + offsetY;
